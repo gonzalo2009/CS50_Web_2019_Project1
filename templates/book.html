@@ -1,0 +1,68 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Search
+{% endblock %}
+{% block body %}
+    <div class="col-xl-3"></div>
+        <div class="col-xl-6 container2">
+            <div id="book-data">
+                <h1>{{ book_row["title"] }}</h1>
+                <ul>
+                    <li>Author: {{ book_row["author"] }}</li>
+                    <li>Year: {{ book_row["year"] }}</li>
+                    <li>isbn: {{ book_row["isbn"] }}</li>
+                </ul>
+                <div>
+                    <h4 >Goodreadas Data:</h4>
+                    <ul>
+                        <li>Average Rating: {{ average_rating }}</li>
+                        <li>Number of Raitings: {{ ratings_count }}</li>
+                    </ul>
+                </div>
+            </div>
+            <div>
+                <h4 id="text-opinion">Give your opinion about the book:</h4>
+                <form action="/book/{{ book_row['isbn'] }}" method="GET">
+                    <div class="form-group" id="container-rating-list">
+                        <label for="rating-list">Set a raiting:</label>
+                        <select id="rating-list" class="form-control" name="rating">
+                            <option value="0">Rating</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                        </select>
+                    </div>
+                    <div>
+                        <p id="review-text" >Leave a review:</p>
+                    </div>
+                    <div>
+                        <textarea name="review"></textarea>
+                    </div>
+                
+                    <div>
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </div>    
+                </form>
+                
+                <div>
+                    {% if reviews %}
+                        <h4>Reviews from other users:</h4>
+                        {% for review in reviews %}
+                            <div class="container-review">
+                                <div class="container-flex"> 
+                                    <p >{{ review["username"] }}:</p>
+                                    <p id="rating">Rating: {{ review["rating"] }}</p>
+                                </div>   
+                                <p>{{ review["review"] }}</p>
+                                <p id="date-time">{{ review["date_time"] }}</p>
+                            </div>    
+                        {% endfor %}
+                    {% endif %}   
+                </div>
+            </div>
+        </div>
+    <div class="col-xl-3"></div>
+{% endblock %}

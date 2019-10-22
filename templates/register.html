@@ -1,0 +1,39 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Register
+{% endblock %}
+
+{% block body %}
+   
+            <div class="col-xl"></div>
+            <div class="col-xl">
+                <form class="form1" method="POST" action="/register">
+                    {% if error %}
+                        <div class="message">
+                            <p>{{error}}</p>
+                        </div>
+                    {% endif %}
+                    <div class="form-group1">
+                        <p>Register</p>
+                    </div>
+                    <div class="form-group2">
+                        <input type="text" class="form-control" placeholder="Username" name="username" autocomplete="off">
+                    </div>
+                    <div class="form-group2">
+                        <input type="password" class="form-control" placeholder="Password" name="password">
+                    </div>
+                    <div class="form-group3">
+                        <input type="password" class="form-control" placeholder="Confirm Password" name="confirm_password">
+                    </div>
+                    <div class="form-group4">
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </div>
+                    <div class="form-group5">
+                        <p>Already have an account? <a href="/login">Login here</a>.</p>
+                    </div>
+                </form>
+            </div>
+            <div class="col-xl"></div>
+      
+{% endblock %}
